@@ -1,5 +1,6 @@
 import torch
 from matplotlib import pyplot as plt
+import streamlit as st
 
 from torchvision import transforms
 from torchvision.datasets import FashionMNIST
@@ -47,4 +48,12 @@ with torch.no_grad():
 plt.imshow(images.squeeze(),cmap="gray")
 plt.title(f'predicted:{classes[prediction]}')
 plt.show()
+
+# streamlit as st 
+st.title("Fashion MNIST Classifier")
+st.write("Deployment successful")
+st.image(images.squeeze().numpy())
+st.write(f"Prediction: {classes[prediction.item()]}")
+st.write(f"Actual: {classes[label]}")
+
 print('actual',classes[label])
