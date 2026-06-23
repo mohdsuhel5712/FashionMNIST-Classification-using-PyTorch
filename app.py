@@ -45,15 +45,24 @@ images,label = test_dataset[idex]
 with torch.no_grad():
       output = model(images.unsqueeze(0).to(device))
       prediction = output.argmax(1)
-plt.imshow(images.squeeze(),cmap="gray")
-plt.title(f'predicted:{classes[prediction]}')
-plt.show()
+# plt.imshow(images.squeeze(),cmap="gray")
+# plt.title(f'predicted:{classes[prediction]}')
+# plt.show()
 
 # streamlit as st 
 st.title("Fashion MNIST Classifier")
 st.write("Deployment successful")
-st.image(images.squeeze().numpy())
-st.write(f"Prediction: {classes[prediction.item()]}")
+# st.image(images.squeeze().numpy())
+# st.write(f"Prediction: {classes[prediction.item()]}")
+# st.write(f"Actual: {classes[label]}")
+import streamlit as st
+
+st.image(
+    images.squeeze().numpy(),
+    caption=f"Predicted: {classes[prediction.item()]}",
+    use_container_width=True
+)
+
 st.write(f"Actual: {classes[label]}")
 
 print('actual',classes[label])
